@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRenderCards, useIntersection } from './hooks';
 import { Header, CardsList } from './features';
 import { ScrollTop } from './components';
@@ -9,15 +9,22 @@ export function App() {
   const isInViewport = useIntersection(lastCard, '0px');
   const { data, isLoading } = useRenderCards(isInViewport);
   const [ scrolled, setScrolled ] = useState<boolean>(false);
+  const [ scrolledPercent, setScrolledPercent ] = useState<number>(0);
 
   const handleScroll = () => {
     if(!container.current) return;
     container.current.scrollTop > 400 ? setScrolled(true) : setScrolled(false);
+    setScrolledPercent(container.current.scrollTop / ( container.current.scrollHeight * 0.01 ));
   };
+
+  useEffect(() => {
+    if(!container.current) return;
+    setScrolledPercent(container.current.scrollTop / ( container.current.scrollHeight * 0.01 ));
+  }, [data]);
 
   return (
     <div ref={container} onScroll={handleScroll} className='h-screen overflow-auto'>
-      <Header />
+      <Header scrolled={scrolledPercent} />
       <CardsList data={data} reference={lastCard} isLoading={isLoading} />
       <ScrollTop container={container} scrolled={scrolled} />
     </div>
