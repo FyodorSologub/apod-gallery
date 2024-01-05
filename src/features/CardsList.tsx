@@ -8,9 +8,9 @@ export const CardsList : React.FC<cardsList> = ({ data, reference, isLoading }) 
         <section className='h-full snap-y snap-mandatory max-h-full w-4/5 max-w-[1000px] grid grid-cols-1 lg:grid-cols-2 grid-rows-auto gap-5 pt-3 lg:pt-5'>
         { data.map((obj, id) => {
             if(data.length === id + 1) {
-              return <Card reference={reference} explanation={obj.explanation} title={obj.title} url={obj.url} key={id} />
+              return <Card reference={reference} explanation={obj.explanation} title={obj.title} url={obj.url} key={id} date={ obj.date } />
             }
-            return <Card explanation={obj.explanation} title={obj.title} url={obj.url} key={id} />
+            return <Card explanation={obj.explanation} title={obj.title} url={obj.url} key={id} date={ obj.date } />
         }) }
         { isLoading === true && [1,2,3,4,5,6,7,8,9,10,11,12].map(id => <CardLoading key={ id } />) }
         </section>
