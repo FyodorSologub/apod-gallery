@@ -2,7 +2,6 @@ import { cardsList } from "../types";
 import { Card, CardLoading } from "../components";
 
 export const CardsList : React.FC<cardsList> = ({ data, reference, isLoading }) : JSX.Element => {
-
   return (
     <main className='h-auto mt-20 p-5 flex justify-center bg-slate-100'>
         <section className='h-full snap-y snap-mandatory max-h-full w-4/5 max-w-[1000px] grid grid-cols-1 lg:grid-cols-2 grid-rows-auto gap-5 pt-3 lg:pt-5'>
