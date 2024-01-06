@@ -9,7 +9,7 @@ export const Card : React.FC<CardProps> = ({ explanation, title, url, reference,
             <img className="w-16 h-16 aspect-square rounded-full group-hover:blur-[1px]" src={ url } alt="?" />
             <div className="flex flex-col w-full gap-0 overflow-hidden">
                 <h2 className="w-full max-h-10 rounded-sm text-lg antialiased font-thin truncate shrink-0 group-hover:blur-[1px]">{ title }</h2>
-                <small className="w-full h-full max-h-full rounded-sm text-sm antialiased font-thin group-hover:blur-[1px] line-clamp-3">{ explanation }</small>
+                <small className="w-full h-full max-h-full rounded-sm text-sm antialiased font-thin group-hover:blur-[1px] line-clamp-2">{ explanation }</small>
             </div>
             <button onClick={ handleRedirect } className="absolute w-full h-full top-0 left-0 text-md antialiased font-light rounded-md justify-center items-center bg-slate-50 text-slate-900 opacity-90 hidden group-hover:flex transition-all">see more</button>
         </article>
