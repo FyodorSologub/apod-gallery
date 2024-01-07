@@ -3,8 +3,8 @@ export type RawApiData = {
     readonly date: string,
     readonly explanation: string,
     readonly hdurl?: string,
-    readonly media_type?: string,
     readonly service_version?: string,
     readonly title: string,
     readonly url: string,
+    readonly media_type : 'image' | 'video',
 };

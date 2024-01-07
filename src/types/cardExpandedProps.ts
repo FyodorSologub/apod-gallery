@@ -3,4 +3,5 @@ export type cardExpandedProps = {
     readonly title: string,
     readonly url: string,
     readonly copyright: string,
+    readonly media_type : 'image' | 'video',
 };

@@ -10,7 +10,7 @@ export const useHomeData = (lastCard : React.RefObject<HTMLElement>, container :
     useEffect(() => {
       if(!container.current) return;
       setScrolledPercent(container.current.scrollTop / ( container.current.scrollHeight * 0.01 ));
-    }, [container, data]);
+    }, [container, data, isLoading]);
   
     return { data, isLoading, scrolled, setScrolled, scrolledPercent, setScrolledPercent };
   };
