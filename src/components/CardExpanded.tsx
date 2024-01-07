@@ -47,9 +47,9 @@ export const CardExpanded : React.FC<cardExpandedProps>= ({ url, title, explanat
             <ReactPlayer url={ url } controls={ true } muted={ false } width={ videoWidth } height={ videoHeight } style={{borderRadius: '0.375rem'}} />
           </div>
       }
-      <small className={`w-auto h-auto max-h-full text-xs lg:text-base antialiased font-extralight text-justify col-span-1 md:col-span-2 ${ isExpanded ? 'row-start-2 overflow-auto' : 'row-start-7 overflow-hidden md:overflow-auto' } row-end-13 md:row-start-2 md:row-end-13 md:pl-5 relative mt-2 md:mt-0`}>
+      <small className={`w-auto h-auto max-h-full text-xs lg:text-base antialiased font-extralight text-justify col-span-1 md:col-span-2 ${ isExpanded ? 'row-start-2 row-end-11 overflow-auto' : 'row-start-7 row-end-13 overflow-hidden md:overflow-auto' } md:row-start-2 md:row-end-13 md:pl-5 relative mt-2 md:mt-0`}>
         { explanation }
-        <div className={`w-full h-1/3 absolute bottom-0 ${ isExpanded === false ? 'bg-opacity-90 bg-slate-200' : '' } flex sm:hidden justify-center items-end`}>
+        <div className={`w-full h-1/3 ${ isExpanded === false ? 'bg-opacity-90 bg-slate-200 bottom-0 absolute' : 'fixed bottom-8 right-0' } flex sm:hidden justify-center items-end`}>
           <button onClick={() => setExpanded(prev => !prev)} className='w-fit h-fit mb-2 border rounded-md flex bg-slate-950 text-slate-50 antialiased text-sm font-thin shrink-0 px-3 py-1'>{ isExpanded ? 'hide' : 'expand' }</button>
         </div>
       </small>
