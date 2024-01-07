@@ -1460,6 +1460,14 @@ video {
     display: flex;
   }
 
+  .md\:max-h-\[1000px\] {
+    max-height: 1000px;
+  }
+
+  .md\:max-h-\[650px\] {
+    max-height: 650px;
+  }
+
   .md\:w-4\/6 {
     width: 66.666667%;
   }
