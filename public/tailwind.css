@@ -1617,6 +1617,11 @@ video {
     line-height: 1.5rem;
   }
 
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   .lg\:font-thin {
     font-weight: 100;
   }
