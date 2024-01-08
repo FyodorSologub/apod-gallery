@@ -35,7 +35,7 @@ export const CardExpanded : React.FC<cardExpandedProps>= ({ url, title, explanat
         <h2 className='w-auto h-auto text-center rounded-md text-md antialiased font-extralight shrink-0 col-span-1 md:col-span-2 row-start-1 row-end-2'>{ title }</h2>
         { media_type === 'image' && 
             <div className={`border ${ isExpanded ? 'hidden' : 'block' } rounded-md border-slate-200 col-span-1 row-start-2 row-end-7 md:row-start-2 md:row-end-13 relative`}>
-              <img className='h-full w-full aspect-square rounded-md object-cover' src={ url } onClick={() => setIsModalOpen(true)} />
+              <img className='h-full w-full aspect-square rounded-md object-cover hover:cursor-pointer' src={ url } onClick={() => setIsModalOpen(true)} />
               { copyright &&
                 <div className='w-fit h-auto flex gap-x-1 md:gap-x-2 items-center justify-center shrink-0 absolute border bg-slate-950 px-2 lg:px-3 py-1 lg:py-2 rounded-md top-2 right-2'>
                   <img className='w-3 lg:w-5 h-auto rounded-full lg:mt-[0.1rem] bg-slate-100' src={ Avatar } />
@@ -46,7 +46,7 @@ export const CardExpanded : React.FC<cardExpandedProps>= ({ url, title, explanat
         }
         { media_type === 'video' && 
             <div ref={videContainer} className={`${ isExpanded ? 'hidden' : 'block' } col-span-1 row-start-2 row-end-7 md:row-start-2 md:row-end-13 rounded-md`}>
-              <ReactPlayer url={ url } controls={ true } muted={ false } width={ videoWidth } height={ videoHeight } style={{borderRadius: '0.375rem'}} />
+              <ReactPlayer url={ url } controls={ true } muted={ true } width={ videoWidth } height={ videoHeight } style={ {borderRadius: '0.375rem'} } />
             </div>
         }
         <small className={`w-auto h-auto max-h-full text-xs lg:text-base antialiased font-extralight text-justify col-span-1 md:col-span-2 ${ isExpanded ? 'row-start-2 row-end-11 overflow-auto md:px-5' : 'row-start-7 row-end-13 overflow-hidden md:overflow-hidden' } md:row-start-2 md:row-end-11 relative mt-2 md:mt-0 scrollbar-hide`}>
@@ -59,7 +59,7 @@ export const CardExpanded : React.FC<cardExpandedProps>= ({ url, title, explanat
             <button onClick={() => setExpanded(prev => !prev)} className='w-fit h-fit border rounded-md flex bg-slate-950 text-slate-100 antialiased text-sm font-extralight shrink-0 px-3 py-1'>{ isExpanded ? 'hide text' : 'expand text' }</button>
         </div>
       </article>
-      <div onClick={() => setIsModalOpen(false)} className={`${isModalOpen ? 'flex' : 'hidden'} fixed mt-20 left-0 w-full h-full flex-col gap-y-5 items-center bg-slate-100 p-10`}>
+      <div onClick={() => setIsModalOpen(false)} className={`${isModalOpen ? 'flex' : 'hidden'} fixed mt-20 left-0 w-full h-full flex-col gap-y-5 items-center bg-slate-100 p-10 hover:cursor-pointer`}>
         <h2 className='w-auto h-auto text-center rounded-md text-sm md:text-xl antialiased font-extralight shrink-0'>{ title }</h2>
         <img className='rounded-md max-w-full md:max-w-[75%] max-h-full md:max-h-[75%]' src={ url } />
       </div>
