@@ -7,3 +7,12 @@ export const ScrollIndicator : React.FC<scrollIndicator> = ({ scrolled }) => {
         </p>
     );
 };
+
+
+export const ScrollIndicatorVertical : React.FC<scrollIndicator> = ({ scrolled }) => {
+    return (
+        <p className='h-full w-2 bg-slate-300'>
+            <span className='w-full block bg-slate-700 transition-all ease-out' style={{ height: `${scrolled}%` }}></span>
+        </p>
+    );
+};
