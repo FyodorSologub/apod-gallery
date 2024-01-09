@@ -9,5 +9,6 @@ export const getApodData = async (startDate : Date, endDate : Date) : Promise<Ra
 
     const response = await fetch(url);
     const json = await response.json() as RawApiData[];
-    return json;
+    const dataSortedByDate = json.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return dataSortedByDate;
 };
