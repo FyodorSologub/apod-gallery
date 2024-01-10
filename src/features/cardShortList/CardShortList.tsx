@@ -1,5 +1,5 @@
 import { cardsList } from "./types";
-import { CardsRenderer, CardsLoadingRenderer } from "./Cardsrenderer";
+import { CardsRenderer, CardsLoadingRenderer } from "./CardsRenderer";
 
 export const CardShortList : React.FC<cardsList> = ({ data, reference, isLoading }) : JSX.Element => {
   return (

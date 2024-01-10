@@ -1,5 +1,7 @@
 import { useRef } from 'react';
-import { Header, CardShortList, ScrollTopButton } from '../../../features';
+import { Header } from '../../../features/header';
+import { CardShortList } from '../../../features/cardShortList';
+import { ScrollTopButton } from '../../../features/scrollTopButton';
 import { handleScroll } from '../utils';
 import { useHomeData } from '../hooks';
 
