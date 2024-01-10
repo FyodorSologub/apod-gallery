@@ -5,13 +5,23 @@ import { getNDaysBack } from "../utils";
 import { setInSession, getFromSession, checkInSessionByDate } from "../../../shared/utils";
 import { getApodData } from "../../../shared/api";
 
-
 const getDaysDiff = (first : Date, second : Date) => {        
   return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
 };
 
+const filterImages = (data: rawApiData[], filter: boolean) => {
+  return data.filter(obj => (obj.media_type === 'image') === filter);
+};
+
+const filterVideos = (data: rawApiData[], filter: boolean) => {
+  return data.filter(obj => (obj.media_type === 'video') === filter);
+};
+
 export const useRenderCards = ( isInViewport : boolean ) => {
     const [ data, setData ] = useState<rawApiData[]>([]);
+    const [ dataFiltered, setDataFiltered ] = useState<rawApiData[]>([]);
+    const [ showImagesFilter, setShowImagesFilter ] = useState<boolean>(true);
+    const [ showVideosFilter, setShowVideosFilter ] = useState<boolean>(true);
     const [ searchParams, setSearchParams ] = useSearchParams();
     const [ endSearchParamVal, setEndSearchParamVal ] = useState<string>('');
     const [ page, setPage ] = useState<number>(1);
@@ -22,9 +32,13 @@ export const useRenderCards = ( isInViewport : boolean ) => {
       
       const endDateParam = searchParams.get('endDate');
       const startDateParam = searchParams.get('startDate');
+      const showImagesParam = searchParams.get('showImages');
+      const showVideosParam = searchParams.get('showVideos');
 
       let endDate : Date;
       let startDate : Date;
+      let showImages : boolean;
+      let showVideos : boolean;
 
       if(endDateParam) {
         const d = new Date(endDateParam);
@@ -40,6 +54,14 @@ export const useRenderCards = ( isInViewport : boolean ) => {
         } else { startDate = getNDaysBack(endDate, 23); }
       } else { startDate = getNDaysBack(endDate, 23); }
 
+      if(showImagesParam) {
+        showImages = Boolean(showImagesParam);
+      } else { showImages = true }
+
+      if(showVideosParam) {
+        showVideos = Boolean(showVideosParam);
+      } else { showVideos = true }
+
       const endDateAsString = `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1 >= 10 ? endDate.getUTCMonth() + 1 : '0' + String(endDate.getUTCMonth() + 1)}-${endDate.getUTCDate() >= 10 ? endDate.getUTCDate() : '0' + String(endDate.getUTCDate())}`;
       const startDateAsString = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1 >= 10 ? startDate.getUTCMonth() + 1 : '0' + String(startDate.getUTCMonth() + 1)}-${startDate.getUTCDate() >= 10 ? startDate.getUTCDate() : '0' + String(startDate.getUTCDate())}`;
 
@@ -50,7 +72,9 @@ export const useRenderCards = ( isInViewport : boolean ) => {
         const daysDiff = getDaysDiff(startDate, endDate);
         setData(sessionData.slice(0,daysDiff)); 
         setInSession(sessionData.slice(0,daysDiff));
-        setSearchParams({ endDate : endDateAsString, startDate : startDateAsString });
+        setShowImagesFilter(showImages);
+        setShowVideosFilter(showVideos);
+        setSearchParams({ endDate : endDateAsString, startDate : startDateAsString, showImages: String(showImages), showVideos: String(showVideos) });
         setEndSearchParamVal(endDateAsString);
         setLoading(false); 
       }
