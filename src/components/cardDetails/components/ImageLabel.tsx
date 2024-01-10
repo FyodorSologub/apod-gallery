@@ -1,4 +1,4 @@
-import Avatar from '../../../assets/avatar.svg';
+import Avatar from '../../../shared/assets/avatar.svg';
 import { ImageLabelProps } from '../types/ImageLabelProps';
 
 export const ImageLabel : React.FC<ImageLabelProps> = ({ copyright }) => {

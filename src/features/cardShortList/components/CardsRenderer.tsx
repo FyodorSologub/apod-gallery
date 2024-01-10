@@ -1,4 +1,5 @@
-import { cardsRendererProps, cardsLoadingRendererProps } from "./types";
+import { cardsRendererProps } from "../types/cardsRendererProps";
+import { cardsLoadingRendererProps } from "../types/cardsLoadingRendererProps";
 import { CardShort, CardShortLoading } from "./CardShort";
 
 export const CardsRenderer : React.FC<cardsRendererProps> = ({ data, reference }) => {

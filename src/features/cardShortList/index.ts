@@ -1,1 +1,1 @@
-export { CardShortList } from './CardShortList';
+export { CardShortList } from './components/CardShortList';

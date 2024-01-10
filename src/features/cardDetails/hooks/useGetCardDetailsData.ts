@@ -1,10 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { RawApiData } from "../../../types";
-import { getApodData } from "../../../api";
-import { getFromSession, checkInSessionByDate } from "../../../utils";
+import { rawApiData } from "../../../shared/types";
+import { getApodData } from "../../../shared/api";
+import { getFromSession, checkInSessionByDate } from "../../../shared/utils";
 
-const setInSessionX = ( data: RawApiData[] ) => {
+const setInSessionX = ( data: rawApiData[] ) => {
   const dataX = JSON.stringify(data);
   sessionStorage.setItem('dataX', dataX);
 };
@@ -12,41 +12,42 @@ const setInSessionX = ( data: RawApiData[] ) => {
 const getFromSessionX = () => {
   const data = sessionStorage.getItem('dataX');
   if(!data) return null;
-  const result =  JSON.parse(data) as RawApiData[];
-  return result as RawApiData[];
+  const result =  JSON.parse(data) as rawApiData[];
+  return result as rawApiData[];
 };
 
 const checkInSessionXByDate = ( date: Date ) => {
   const data = sessionStorage.getItem('dataX');
   if(!data) return false;
-  const result = JSON.parse(data) as RawApiData[];
+  const result = JSON.parse(data) as rawApiData[];
   if(new Date(result[0].date).getTime() !== date.getTime()) return false;
   return true;
 };
 
 const getFromSessionByDate = ( date : string ) => {
-  const isInSession = checkInSessionByDate(new Date(date));
+  const data = getFromSession();
+  const dataX = getFromSessionX();
+
+  const isInSession = data && checkInSessionByDate(new Date(date), data);
   const isInSessionX = checkInSessionXByDate(new Date(date));
 
   if(!isInSession && !isInSessionX) return null;
 
-  const dataX = getFromSessionX();
   if(isInSessionX && dataX) { 
     return dataX;
   }
 
-  const data = getFromSession();
   if(isInSession && data) {
     const result = data.filter(obj => new Date(obj.date).getTime() === new Date(date).getTime());
 
     if(!result.length) return null;
-    return result as RawApiData[];
+    return result as rawApiData[];
   }
 };
 
 export const useGetCardDetailsData = () => {
     const [ searchParams ] = useSearchParams();
-    const [ data, setData ] = useState<RawApiData[]>([]);
+    const [ data, setData ] = useState<rawApiData[]>([]);
     const [ isLoading, setLoading ] = useState<boolean>(false);
 
     useEffect(() => {

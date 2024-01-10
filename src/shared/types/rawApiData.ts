@@ -1,4 +1,4 @@
-export type RawApiData = {
+export type rawApiData = {
     readonly copyright: string,
     readonly date: string,
     readonly explanation: string,

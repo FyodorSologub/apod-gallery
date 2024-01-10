@@ -1,4 +1,4 @@
-import arrowRight from '../../../assets/arrow-right.svg';
+import arrowRight from '../../../shared/assets/arrow-right.svg';
 
 export const VideoPreview = () => {
   return (

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'react-router-dom';
-import { RawApiData } from "../../../types";
+import { rawApiData } from "../../../shared/types";
 import { getNDaysBack } from "../utils";
-import { setInSession, getFromSession, checkInSessionByDate } from "../../../utils";
-import { getApodData } from "../../../api";
+import { setInSession, getFromSession, checkInSessionByDate } from "../../../shared/utils";
+import { getApodData } from "../../../shared/api";
 
 
 const getDaysDiff = (first : Date, second : Date) => {        
@@ -11,7 +11,7 @@ const getDaysDiff = (first : Date, second : Date) => {
 };
 
 export const useRenderCards = ( isInViewport : boolean ) => {
-    const [ data, setData ] = useState<RawApiData[]>([]);
+    const [ data, setData ] = useState<rawApiData[]>([]);
     const [ searchParams, setSearchParams ] = useSearchParams();
     const [ endSearchParamVal, setEndSearchParamVal ] = useState<string>('');
     const [ page, setPage ] = useState<number>(1);
@@ -43,8 +43,8 @@ export const useRenderCards = ( isInViewport : boolean ) => {
       const endDateAsString = `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1 >= 10 ? endDate.getUTCMonth() + 1 : '0' + String(endDate.getUTCMonth() + 1)}-${endDate.getUTCDate() >= 10 ? endDate.getUTCDate() : '0' + String(endDate.getUTCDate())}`;
       const startDateAsString = `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1 >= 10 ? startDate.getUTCMonth() + 1 : '0' + String(startDate.getUTCMonth() + 1)}-${startDate.getUTCDate() >= 10 ? startDate.getUTCDate() : '0' + String(startDate.getUTCDate())}`;
 
-      const isInSession = checkInSessionByDate(endDate);
       const sessionData = getFromSession();
+      const isInSession = sessionData ? checkInSessionByDate(endDate, sessionData) : false;
 
       if(isInSession && sessionData !== null) { 
         const daysDiff = getDaysDiff(startDate, endDate);

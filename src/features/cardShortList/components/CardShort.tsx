@@ -1,8 +1,8 @@
-import { CardProps } from './types';
-import { ImagePreview, VideoPreview, TextContentPreview } from '../../components/cardShort';
+import { cardShortProps } from '../types/cardShortProps';
+import { ImagePreview, VideoPreview, TextContentPreview } from '../../../components/cardShort';
 import { Link } from 'react-router-dom';
 
-export const CardShort : React.FC<CardProps> = ({ explanation, title, url, reference, date, media_type, }) => {
+export const CardShort : React.FC<cardShortProps> = ({ explanation, title, url, reference, date, media_type, }) => {
     return (
         <article ref={reference} className="border border-slate-900 shadow-lg bg-white rounded-md w-full h-24 px-5 py-3 flex gap-x-3 relative group items-center transition-all snap-always snap-center">
             { media_type === 'image' && <ImagePreview url={ url } title={ title } /> }

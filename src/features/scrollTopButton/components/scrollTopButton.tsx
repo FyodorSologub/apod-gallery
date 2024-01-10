@@ -1,4 +1,4 @@
-import ArrowUp from '../../../assets/arrow_up.svg';
+import ArrowUp from '../../../shared/assets/arrow_up.svg';
 import { scrollButtonProps } from '../types/scrollButtonProps';
 import { handleGoTop } from '../utils/handleGoTop';
 
