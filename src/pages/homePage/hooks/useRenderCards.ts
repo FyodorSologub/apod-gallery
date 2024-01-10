@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'react-router-dom';
-import { RawApiData } from "../types";
+import { RawApiData } from "../../../types";
 import { getNDaysBack } from "../utils";
-import { getApodData } from "../api";
-import { setInSession, getFromSession, checkInSessionByDate } from "../utils";
+import { setInSession, getFromSession, checkInSessionByDate } from "../../../utils";
+import { getApodData } from "../../../api";
+
 
 const getDaysDiff = (first : Date, second : Date) => {        
   return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));

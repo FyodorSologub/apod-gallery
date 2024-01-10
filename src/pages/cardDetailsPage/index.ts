@@ -1,0 +1,1 @@
+export { CardDetailsPage } from './components/CardDetailsPage';

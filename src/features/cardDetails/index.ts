@@ -1,0 +1,1 @@
+export { CardDetailsContainer } from './components/cardDetailsContainer';
