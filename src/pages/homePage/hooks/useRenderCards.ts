@@ -83,7 +83,7 @@ export const useRenderCards = ( isInViewport : boolean ) => {
         getApodData(startDate, endDate)
         .then(json => { setData(json); setInSession(json); setSearchParams({ endDate : endDateAsString, startDate : startDateAsString }); setEndSearchParamVal(endDateAsString); setLoading(false); });
       }
-    }, [searchParams, setSearchParams]);
+    }, [searchParams, setSearchParams]);//
   
     useEffect(() => {
       if(isLoading || !isInViewport) return;
